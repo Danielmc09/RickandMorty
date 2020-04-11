@@ -1,17 +1,22 @@
-const Character = () => {
+import getHash from '../utils/getHash';
+import getData from '../utils/getData';
+
+const Character = async () => {
+    const id = getHash();
+    const character = await getData(id);
     const view = `
         <div class="character-inner">
             <article class="character-card">
-                <img class="image" alt="name"> 
-                <h2>Name</name>
+                <img src="${character.image}"}" alt="${character.name}"> 
+                <h2>${character.name}</name>
             </article>    
             <article class="character-card">
-                <h3>Episodios:</h3>
-                <h3>Estado:</h3>
-                <h3>Especies:</h3>
-                <h3>Gender:</h3>
-                <h3>Origen:</h3>
-                <h3>Ultima Ubicacion:</h3>
+                <h3>Episodios:  <span>${character.episode.length}</span></h3>
+                <h3>Estado:  <span>${character.status}</span></h3>
+                <h3>Especies:  <span>${character.species}</span></h3>
+                <h3>Gender:  <span>${character.gender}</span></h3>
+                <h3>Origen:  <span>${character.origin.name}</span></h3>
+                <h3>Ultima Ubicacion:  <span>${character.location.name}</span></h3>
             </article> 
         </div>
     `;
